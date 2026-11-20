@@ -14,7 +14,7 @@ function showPlayer(i){
  const p=players[i], text=escapeText;
  const metrics=[['Overall',4,5],['Offense',11,13],['Defense',12,14]];
  const cell=c=>p[c]==null?'—':format(p[c])+' · #'+ranks[c].get(p[c]);
- el('bio').innerHTML='<div class="eyebrow">Player profile</div><h2>'+text(p[0])+'</h2><p>'+text(p[3])+' · '+text(p[2])+'<br>2025–26 performance at '+text(p[1])+'</p><div class="stats"><div><strong>'+pct(p[9])+'</strong>Above ACC median</div><div><strong>'+pct(p[10])+'</strong>ACC top quarter</div></div><h3>Measured impact</h3><table><thead><tr><th>2025–26</th><th>Halo · rank</th><th>Revised · rank</th></tr></thead><tbody>'+metrics.map(([k,a,b])=>'<tr><td>'+k+'</td><td>'+cell(a)+'</td><td>'+cell(b)+'</td></tr>').join('')+'<tr><td>Board percentile</td><td>'+format(p[7])+'</td><td>'+format(p[8])+'</td></tr></tbody></table>'+(p[5]==null?'<p>Revised player match unresolved. ACC probabilities unavailable.</p>':'');
+ el('bio').innerHTML='<div class="eyebrow">Player profile</div><h2>'+text(p[0])+'</h2><p>'+text(p[3])+' · '+text(p[2])+'<br>2025–26 performance at '+text(p[1])+'</p><div class="stats"><div><strong>'+pct(p[9])+'</strong>Above ACC median</div><div><strong>'+pct(p[10])+'</strong>All-ACC-level RAPM</div></div><h3>Measured impact</h3><table><thead><tr><th>2025–26</th><th>Halo · rank</th><th>Revised · rank</th></tr></thead><tbody>'+metrics.map(([k,a,b])=>'<tr><td>'+k+'</td><td>'+cell(a)+'</td><td>'+cell(b)+'</td></tr>').join('')+'<tr><td>Board percentile</td><td>'+format(p[7])+'</td><td>'+format(p[8])+'</td></tr></tbody></table>'+(p[5]==null?'<p>Revised player match unresolved. ACC probabilities unavailable.</p>':'');
  el('profile').showModal();
 }
 function draw(){
