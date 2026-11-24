@@ -23,7 +23,7 @@ function draw(){
  const q=el('query').value.toLowerCase().trim(),grade=el('grade').value;
  const filtered=players.map((p,i)=>({p,i})).filter(({p})=>(!grade||p[3]===grade)&&p.slice(0,3).join(' ').toLowerCase().includes(q)).sort((a,b)=>(b.p[c]??-Infinity)-(a.p[c]??-Infinity)||a.p[0].localeCompare(b.p[0]));
  const start=page*25, odds=n=>'<span class="odds">'+pct(n)+'</span>'+(n==null?'':'<span class="bar"><i style="width:'+n+'%"></i></span>');
- el('rows').innerHTML=filtered.slice(start,start+25).map(({p,i})=>'<tr><td>'+(ranks[c].get(p[c])??'N/A')+'</td><td><button data-player="'+i+'">'+escapeText(p[0])+'</button><small>'+escapeText(p[2])+'</small></td><td>'+escapeText(p[3])+'</td><td>'+odds(p[9])+'</td><td>'+odds(p[10])+'</td><td>'+format(p[off])+'</td><td>'+format(p[def])+'</td><td>'+format(p[total])+'</td><td>'+format(p[7+revised])+'</td><td>'+(p[15]??'N/A')+'</td></tr>').join('');
+ el('rows').innerHTML=filtered.slice(start,start+25).map(({p,i})=>'<tr><td>'+(ranks[c].get(p[c])??'N/A')+'</td><td><button data-player="'+i+'">'+escapeText(p[0])+'</button><small>'+escapeText(p[2])+'</small></td><td>'+escapeText(p[3])+'</td><td>'+escapeText(p[16])+'</td><td>'+odds(p[9])+'</td><td>'+odds(p[10])+'</td><td>'+format(p[off])+'</td><td>'+format(p[def])+'</td><td>'+format(p[total])+'</td><td>'+format(p[7+revised])+'</td><td>'+(p[15]??'N/A')+'</td></tr>').join('');
  el('count').textContent=filtered.length?(start+1)+'–'+Math.min(start+25,filtered.length)+' of '+filtered.length+' players':'No players match these filters.';
  el('prev').disabled=page===0;el('next').disabled=start+25>=filtered.length;
 }
@@ -31,5 +31,6 @@ for(const id of ['query','grade','sort','source'])el(id).addEventListener('input
 el('prev').onclick=()=>{page--;draw()};el('next').onclick=()=>{page++;draw()};
 el('rows').onclick=e=>{const b=e.target.closest('[data-player]');if(b)showPlayer(+b.dataset.player)};
 draw();
+
 
 
